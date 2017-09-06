@@ -7,8 +7,7 @@ class WishesController < ApplicationController
   end
 
   def show
-    @wishes =
-      end
+  end
 
   def new
     @wish = Wish.new
