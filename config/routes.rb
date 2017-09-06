@@ -12,5 +12,5 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new', as: 'signup'
   post '/users' => 'users#create'
-  root 'wishes#index'
+  root 'welcome#index'
 end

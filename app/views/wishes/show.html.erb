@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-9">
+    <%= image_tag(@wish.picture_url, width: '100%') if @wish.picture.present? %>
+  </div>
+  <div class="col-md-3">
+    <p><b>Name: </b><%= @wish.name %></p>
+    <p><b>Description: </b><%= @wish.description %></p>
+    <p>
+      <%= link_to 'Back', wishes_path %>
+    </p>
+  </div>
+</div>
