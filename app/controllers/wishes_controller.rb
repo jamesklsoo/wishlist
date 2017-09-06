@@ -1,5 +1,4 @@
 class WishesController < ApplicationController
-  before_filer :authorize
   before_action :set_wish, only: [:show, :edit, :update, :destroy]
 
   def index

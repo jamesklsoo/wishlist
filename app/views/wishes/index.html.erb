@@ -1,1 +1,12 @@
-<h1>Welcome to Wishlist</h1>
+<h1>Listing wishes</h1>
+<% @wishes.in_groups_of(3) do |group| %>
+  <div class="row">
+    <% group.compact.each do |wish| %>
+      <div class="col-md-4">
+        <%= image_tag wish.picture_url(:thumb) if wish.picture.present? %>
+        <h4><%= link_to wish.name, wish %></h4>
+        <%= wish.description %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
