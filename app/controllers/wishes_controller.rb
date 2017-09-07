@@ -17,28 +17,25 @@ class WishesController < ApplicationController
 
   def create
     @wish = Wish.new(wish_params)
-
-    respond_to do |format|
-      if @wish.save
-        format.html { redirect_to @wish, notice: 'Wish was successfully created.'}
-        format.json { render :show, status: :created, location: @wish}
-      else
-        format.html { render :new }
-        format.json { render json: @wish.errors, status: :unprocessable_entity}
-      end
+    @wish.user_id = current_user.id
+    if @wish.save
+      flash[:success] = "Wish has been created."
+      redirect_to wish_path(@wish)
+    else
+      flash[:danger] = "There has been an error."
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @wish.update(wish_params)
-        format.html { redirect_to @wish, notice: 'Wish was successfully updated.'}
-        format.json { render :show, status: :ok, location: @wish }
-      else
-        format.html { render :edit }
-        format.json { render json: @wish.errors, status: :unprocessable_entity}
-      end
+    @wish.update(wish_params)
+    if @wish.save
+      flash[:success] = "Wish updated."
+    else
+      flash[:danger] = "Update failed."
+      render :edit
     end
+
   end
 
   def destroy
