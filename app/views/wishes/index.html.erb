@@ -1,4 +1,32 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-brand"><%= link_to "The Wish List", wishes_path%></div>
+      <%= form_tag(wishes_path, :method => 'get', id: "search-form", :class => "navbar-form navbar-left") do %>
+        <div class="form-group">
+          <%= text_field_tag :search, params[:search], :class => "form-control", placeholder: "Search for wish" %>
+        </div>
+        <%= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
+      <% end %>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+      </ul>
+      <p class="navbar-text pull-right">
+        <%= link_to "Profile", user_path(:id), :class => 'navbar-link' %> |
+        <%= link_to "Logout", logout_path, :class => 'navbar-link' %>
+      </p>
+    </div>
+  </div>
+</nav>
 <h1>Listing wishes</h1>
+<%= link_to "Create A Wish", new_wish_path%>
 <% @wishes.in_groups_of(3) do |group| %>
   <div class="row">
     <% group.compact.each do |wish| %>
@@ -7,6 +35,24 @@
         <h4><%= link_to wish.name, wish %></h4>
         <%= wish.description %>
       </div>
+    <% end %>
+  </div>
+<% end %>
+<% if @wish_search.nil? %>
+  <p></p>
+<% elsif @wish_search.blank? %>
+  <div class="jumbotron">
+    <h3>Your Search Results:</h3>
+    <p>There are no wishes containing the term "<%=params[:search] %>".</p>
+  </div>
+<% else %>
+  <div class="jumbotron">
+    <h3>Your Search Results:</h3>
+    <% @wish_search.each do |t| %>
+      <b>
+        <p>Description</p>
+      </b>
+      <td><%= t.description %></td>
     <% end %>
   </div>
 <% end %>
