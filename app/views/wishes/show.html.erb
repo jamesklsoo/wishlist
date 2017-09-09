@@ -7,8 +7,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div class="navbar-brand"><%= link_to "The Wish List", wishes_path%></div>
-      <%= form_tag(wishes_path, :method => 'get', id: "search-form", :class => "navbar-form navbar-left") do %>
+      <div class="navbar-brand"><%= link_to "The Wish List", user_wishes_path%></div>
+      <%= form_tag(user_wishes_path(@user), :method => 'get', id: "search-form", :class => "navbar-form navbar-left") do %>
         <div class="form-group">
           <%= text_field_tag :search, params[:search], :class => "form-control", placeholder: "Search for wish" %>
         </div>
@@ -33,8 +33,8 @@
     <p><b>Name: </b><%= @wish.name %></p>
     <p><b>Description: </b><%= @wish.description %></p>
     <p>
-      <%= link_to 'Edit', edit_wish_path(@wish) %>
-      <%= link_to 'Back', wishes_path %>
+      <%= link_to 'Edit', edit_user_wish_path(@user, @wish) %>
+      <%= link_to 'Back', user_wishes_path %>
     </p>
   </div>
 </div>

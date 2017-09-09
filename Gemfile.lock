@@ -341,6 +341,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   factory_girl_rails
   fog-aws
+  guard
   guard-rspec
   inherited_resources!
   jbuilder (~> 2.5)

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :wishes, controller: "wishes"
   end
 
-  resources :wishes, controller: "wishes"
+
 
   get '/login' => 'sessions#new', as: 'login'
   post '/login' => 'sessions#create'

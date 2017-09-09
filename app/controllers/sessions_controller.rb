@@ -7,14 +7,14 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       flash[:success] = "Signed in!"
-      redirect_to user_wishes_path(user_id: @user_id)
+      redirect_to user_wishes_path(user_id: @user.id)
     else
       render :new
     end
   end
 
   def destroy
-    reset_session
+    session[:user_id] = nil
     flash[:danger] = "Signed out!"
     redirect_to login_path
   end
