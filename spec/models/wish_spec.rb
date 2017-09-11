@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Wish, type: :model do
   context "validations" do
     it "should have description" do
-      should have_db_column(:description).of_type(:string)
+      should have_db_column(:description).of_type(:text)
     end
 
     describe "does not validates presence of attributes" do
@@ -12,6 +12,6 @@ RSpec.describe Wish, type: :model do
   end
 
   context "associations" do
-    it {is_expected.to belongs_to(:user)}
+    it {is_expected.to belong_to(:user)}
   end
 end

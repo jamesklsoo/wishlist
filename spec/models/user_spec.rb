@@ -20,7 +20,7 @@ RSpec.describe User, type: :model do
 
     # happy_path
     describe "can be created when all attributes are present" do
-      When(:user) {User.create (
+      When(:user) {User.create(
                      fullname: "Abcde",
                      email: "abcde@gmail.com",
                      password: "123456",
@@ -46,7 +46,7 @@ RSpec.describe User, type: :model do
 
     describe "should permit valid email only" do
       let(:user1) {User.create(fullname: "Abcde", email: "abcde@gmail.com", password: "123456")}
-      let(:user2) {User.create(fullname: "Harry", email: "hk.com", password: "123456")}
+      let(:user2) {User.create(fullname: "Harry", email: "", password: "123456")}
 
       # happy_path
       it "sign up with valid email" do
@@ -61,7 +61,6 @@ RSpec.describe User, type: :model do
   end
 
   context "associations with dependency" do
-    it { is_expected.to have_many(:authentications).dependent(:destroy)}
     it { is_expected.to have_many(:wishes)}
   end
 end

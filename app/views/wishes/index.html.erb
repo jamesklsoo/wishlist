@@ -7,8 +7,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div class="navbar-brand"><%= link_to "The Wish List", wishes_path%></div>
-      <%= form_tag(wishes_path, :method => 'get', id: "search-form", :class => "navbar-form navbar-left") do %>
+      <div class="navbar-brand"><%= link_to "The Wish List", user_wishes_path(user_id: @user.ids)%></div>
+      <%= form_tag(user_wishes_path, :method => 'get', id: "search-form", :class => "navbar-form navbar-left") do %>
         <div class="form-group">
           <%= text_field_tag :search, params[:search], :class => "form-control", placeholder: "Search for wish" %>
         </div>
@@ -19,20 +19,20 @@
       <ul class="nav navbar-nav">
       </ul>
       <p class="navbar-text pull-right">
-        <%= link_to "Profile", user_path(:id), :class => 'navbar-link' %> |
+        <%= link_to "Profile", user_path(@user.ids), :class => 'navbar-link' %> |
         <%= link_to "Logout", logout_path, :class => 'navbar-link' %>
       </p>
     </div>
   </div>
 </nav>
 <h1>Listing wishes</h1>
-<%= link_to "Create A Wish", new_wish_path%>
+<%= link_to "Create A Wish", new_user_wish_path%>
 <% @wishes.in_groups_of(3) do |group| %>
   <div class="row">
     <% group.compact.each do |wish| %>
       <div class="col-md-4">
         <%= image_tag wish.picture_url(:thumb) if wish.picture.present? %>
-        <h4><%= link_to wish.name, wish %></h4>
+        <h4><%= link_to wish.name, user_wish_path(wish.user_id, wish) %></h4>
         <%= wish.description %>
       </div>
     <% end %>

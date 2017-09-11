@@ -3,7 +3,10 @@ class Wish < ApplicationRecord
   mount_uploader :picture, PictureUploader
 
   def self.search(search)
-    search = search.downcase
-    where("LOWER(description) LIKE ?", "%#{search}%")
+    if search
+      where("LOWER(name) LIKE ?", "%#{search}%").order('id DESC')
+    else
+      order('id DESC')
+    end
   end
 end
