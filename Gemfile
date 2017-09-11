@@ -35,13 +35,15 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 gem 'mini_magick', '3.8.0'
 gem 'fog-aws'
-# Simple search
-gem 'rails-simple-search'
+gem 'carrierwave-aws'
+gem 'fog'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # User authentication
 gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem "pundit"
+gem "figaro"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

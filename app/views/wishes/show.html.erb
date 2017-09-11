@@ -33,7 +33,11 @@
     <p><b>Name: </b><%= @wish.name %></p>
     <p><b>Description: </b><%= @wish.description %></p>
     <p>
-      <%= link_to 'Edit', edit_user_wish_path(@user, @wish) %>
+      <% if current_user.id == @wish.user_id%>
+        <%= link_to 'Edit', edit_user_wish_path(@user, @wish) %>
+      <%else%>
+        <hr>
+      <% end %>
       <%= link_to 'Back', user_wishes_path %>
     </p>
   </div>
