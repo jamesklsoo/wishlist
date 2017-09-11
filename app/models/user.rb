@@ -17,6 +17,20 @@ class User < ApplicationRecord
     end
   end
 
+  def self.create_with_auth_and_hash(authentication, auth_hash)
+    create! do |user|
+      user.fullname = auth_hash["extra"]["raw_info"]["name"]
+      user.email = auth_hash["extra"]["raw_info"]["email"]
+      user.authentications << (authentication)
+      user.password = SecureRandom.hex(7)
+    end
+  end
+
+  def fb_token
+    x = self.authentications.where(:provider => :facebook).first
+    return x.token unless x.nil?
+  end
+
   def name
     fullname
   end
