@@ -7,8 +7,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div class="navbar-brand"><%= link_to "The Wish List", user_wishes_path%></div>
-      <%= form_tag(user_wishes_path(@user), :method => 'get', id: "search-form", :class => "navbar-form navbar-left") do %>
+      <div class="navbar-brand"><%= link_to "The Wish List", user_wishes_path(user_id: @user.id)%></div>
+      <%= form_tag(user_wishes_path, :method => 'get', id: "search-form", :class => "navbar-form navbar-left") do %>
         <div class="form-group">
           <%= text_field_tag :search, params[:search], :class => "form-control", placeholder: "Search for wish" %>
         </div>
@@ -27,6 +27,6 @@
 </nav>
 <h1>Editing Wish</h1>
 <%= render 'form', wish: @wish %>
-<%= link_to 'Show', user_wish_path %> |
-<%= link_to 'Delete', user_wish_path(@wish), method: :delete, data: { confirm: 'Are you sure?' } %>|
-<%= link_to 'Back', user_wishes_path %>
+<br>
+<%= link_to 'Delete', user_wish_path(@wish), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default"%>
+<%= link_to 'Back', user_wish_path, class: "btn btn-default" %>

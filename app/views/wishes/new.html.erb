@@ -7,7 +7,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div class="navbar-brand"><%= link_to "The Wish List", user_wishes_path%></div>
+      <div class="navbar-brand"><%= link_to "The Wish List", user_wishes_path(user_id: @user.id)%></div>
+      <%= form_tag(user_wishes_path, :method => 'get', id: "search-form", :class => "navbar-form navbar-left") do %>
+        <div class="form-group">
+          <%= text_field_tag :search, params[:search], :class => "form-control", placeholder: "Search for wish" %>
+        </div>
+        <%= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
+      <% end %>
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
@@ -21,4 +27,5 @@
 </nav>
 <h1>New Wish</h1>
 <%= render 'form', wish: @wish %>
-<%= link_to 'Back', user_wishes_path %>
+<br>
+<%= link_to 'Back', user_wishes_path, class: "btn btn-default" %>
