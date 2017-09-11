@@ -40,9 +40,10 @@ gem 'fog'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # User authentication
-gem 'activeadmin', github: 'activeadmin'
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
-gem "pundit"
+gem 'omniauth'
+# Login via Facebook
+gem 'omniauth-facebook'
+# Key security
 gem "figaro"
 
 # Use Capistrano for deployment
@@ -54,6 +55,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
   gem 'guard-rspec'
@@ -74,3 +76,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Ruby Version
+ruby "2.4.0"

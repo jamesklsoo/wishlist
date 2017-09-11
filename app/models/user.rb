@@ -1,8 +1,6 @@
 class User < ApplicationRecord
   include BCrypt
   has_secure_password
-  has_many :assignments
-  has_many :roles, through: :assignments
   has_many :authentications, :dependent => :destroy
 
   validates_presence_of :fullname
@@ -13,17 +11,13 @@ class User < ApplicationRecord
 
   has_many :wishes
 
-  # def valid_email
-  #   unless self.email =~ /\w+@\w+\.\w{2,}/
-  #     errors.add(:email, "is not valid.")
-  #   end
-  # end
+  def valid_email
+    unless self.email =~ /\w+@\w+\.\w{2,}/
+      errors.add(:email, "is not valid.")
+    end
+  end
 
   def name
     fullname
-  end
-
-  def role?(role)
-    roles.any? { |r| r.name.underscore.to_sym == role }
   end
 end
