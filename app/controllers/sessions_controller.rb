@@ -31,6 +31,6 @@ class SessionsController < ApplicationController
       flash[:info] = "User created - confirm or edit details..."
     end
     session[:user] = user.id
-    redirect_to posts_path
+    redirect_to user_wishes_path(user_id: @user.id)
   end
 end
